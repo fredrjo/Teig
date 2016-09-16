@@ -1,0 +1,27 @@
+{% block sidebar %}
+<div class="btn-group">
+  <div style="float:left">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Status <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="{{ path('alarm_index') }}">Alarms</a></li>
+    <li><a href="{{ path('meter_status') }}">Meter status</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="{{ path('grabber_index') }}">Grabbers</a></li>
+  </ul>
+</div>
+  <div style="float:left">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Import <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu"">
+    <li><a href="{{ path('exportschedule_index') }}">Exportschedule</a></li>
+    <li><a href="{{ path('historicalgrabqueue_index') }}">Historical grab</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="{{ path('importmail_index') }}">Importmail</a></li>
+    <li><a href="{{ path('contact_index') }}">Contact</a></li>
+  </ul>
+</div>
+</div>
+{% endblock %}

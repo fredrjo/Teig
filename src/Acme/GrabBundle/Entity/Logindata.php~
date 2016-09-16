@@ -1,0 +1,50 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Logindata
+ *
+ * @ORM\Table(name="logindata", uniqueConstraints={@ORM\UniqueConstraint(name="logindata_grabber_id_username_password", columns={"grabber_id", "username", "password"})}, indexes={@ORM\Index(name="logindata_grabber_id", columns={"grabber_id"})})
+ * @ORM\Entity
+ */
+class Logindata
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Grabber
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Grabber")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="grabber_id", referencedColumnName="id")
+     * })
+     */
+    private $grabber;
+
+
+}
+

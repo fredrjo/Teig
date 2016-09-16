@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grabsequence</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Grabtime</th>
+                <td>{% if grabsequence.grabtime %}{{ grabsequence.grabtime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Periodfrom</th>
+                <td>{% if grabsequence.periodFrom %}{{ grabsequence.periodFrom|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Periodto</th>
+                <td>{% if grabsequence.periodTo %}{{ grabsequence.periodTo|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ grabsequence.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('grabsequence_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('grabsequence_edit', { 'id': grabsequence.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

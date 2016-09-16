@@ -1,0 +1,40 @@
+
+    <h1>Meter list</h1>
+<div class="container">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Importid</th>
+                <th>Meteridentifier</th>
+                <th>Extraidentifiers</th>
+                <th>Disabled</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meter in meters %}
+            <tr>
+                <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
+                <td>{{ meter.meteridentifier }}</td>
+                <td>{{ meter.extraidentifiers }}</td>
+                <td>{% if meter.disabled %}Yes{% else %}No{% endif %}</td>
+                <td>
+                  <div class="btn-group btn-group-justified" role="group" aria-label="Actions">
+                    <ul class="list-inline">
+                      <li>
+                          <a href="{{ path('chart_meterdata') }}?meterId={{meter.id}}" class="btn btn-info" role="button">Graph</a>
+                      </li>
+                        <li>
+                            <a href="{{ path('meter_show', { 'id': meter.id }) }}"class="btn btn-info" role="button">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('meter_edit', { 'id': meter.id }) }}"class="btn btn-info" role="button">edit</a>
+                        </li>
+                    </ul>
+                  </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grabdata list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metertime</th>
+                <th>Metervalue</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grabdatum in grabdatas %}
+            <tr>
+                <td><a href="{{ path('grabdata_show', { 'id': grabdatum.id }) }}">{{ grabdatum.metertime }}</a></td>
+                <td>{{ grabdatum.metervalue }}</td>
+                <td>{{ grabdatum.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('grabdata_show', { 'id': grabdatum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('grabdata_edit', { 'id': grabdatum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('grabdata_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

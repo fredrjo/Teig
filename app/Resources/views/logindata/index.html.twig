@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Logindata list</h1>
+    <div class="container">
+    <table class="table tabler-bordered">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for logindatum in logindatas %}
+            <tr>
+                <td><a href="{{ path('logindata_show', { 'id': logindatum.id }) }}">{{ logindatum.username }}</a></td>
+                <td>{{ logindatum.password }}</td>
+                <td>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{ path('logindata_show', { 'id': logindatum.id }) }}" class="btn btn-info" role="button">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('logindata_edit', { 'id': logindatum.id }) }}" class="btn btn-info" role="button">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('logindata_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+  </div>
+{% endblock %}

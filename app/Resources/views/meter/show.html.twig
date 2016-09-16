@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Meter</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Importid</th>
+                <td>{{ meter.importId }}</td>
+            </tr>
+            <tr>
+                <th>Meteridentifier</th>
+                <td>{{ meter.meteridentifier }}</td>
+            </tr>
+            <tr>
+                <th>Extraidentifiers</th>
+                <td>{{ meter.extraidentifiers }}</td>
+            </tr>
+            <tr>
+                <th>Disabled</th>
+                <td>{% if meter.disabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Login data</th>
+                <td>{{ meter.logindata }}<</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+      <li>
+          <a href="{{ path('chart_meterdata') }}?meterId={{meter.id}}" class="btn btn-info" role="button">Graph</a>
+      </li>
+
+        <li>
+            <a href="{{ path('meter_edit', { 'id': meter.id }) }}" class="btn btn-info" role="button">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" role="button" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+        <li>
+            <a href="{{ path('meter_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

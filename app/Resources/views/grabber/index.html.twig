@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grabber list</h1>
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-1">Name</th>
+                <th class="col-md-1">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grabber in grabbers %}
+            <tr>
+                <td><a href="{{ path('grabber_show', { 'id': grabber.id }) }}">{{ grabber.name }}</a></td>
+                <td>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{ path('grabber_show', { 'id': grabber.id }) }}" class="btn btn-info" role="button">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('grabber_edit', { 'id': grabber.id }) }}" class="btn btn-info" role="button">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('grabber_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

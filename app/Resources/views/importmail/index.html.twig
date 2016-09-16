@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Importmail list</h1>
+
+    <div class="container">
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Importmail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for importmail in importmails %}
+            <tr>
+                <td><a href="{{ path('importmail_show', { 'id': importmail.id }) }}">{{ importmail.importmail }}</a></td>
+                <td>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{ path('importmail_show', { 'id': importmail.id }) }}"class="btn btn-info" role="button">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('importmail_edit', { 'id': importmail.id }) }}"class="btn btn-info" role="button">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('importmail_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Alarm
+ *
+ * @ORM\Table(name="alarm", indexes={@ORM\Index(name="alarm_export_schedule_id", columns={"export_schedule_id"})})
+ * @ORM\Entity
+ */
+class Alarm
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=255, nullable=false)
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=false)
+     */
+    private $message;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sent", type="boolean", nullable=false)
+     */
+    private $sent;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="sent_time", type="datetime", nullable=false)
+     */
+    private $sentTime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Exportschedule
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Exportschedule")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="export_schedule_id", referencedColumnName="id")
+     * })
+     */
+    private $exportSchedule;
+
+
+}
+

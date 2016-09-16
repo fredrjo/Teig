@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\GrabBundle\Entity\Meter" table="meter">
+    <indexes>
+      <index name="meter_log_in_data_id" columns="log_in_data_id"/>
+      <index name="meter_exportSchedule_id" columns="exportSchedule_id"/>
+      <index name="meter_status_id" columns="status_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="meter_import_id_log_in_data_id" columns="import_id,log_in_data_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="importId" type="string" column="import_id" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="meteridentifier" type="string" column="meterIdentifier" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="extraidentifiers" type="string" column="extraIdentifiers" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="disabled" type="boolean" column="disabled" nullable="false"/>
+    <many-to-one field="status" target-entity="Status" fetch="LAZY">
+      <join-columns>
+        <join-column name="status_id" referenced-column-name="status_code"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="exportschedule" target-entity="Exportschedule" fetch="LAZY">
+      <join-columns>
+        <join-column name="exportSchedule_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="logInData" target-entity="Logindata" fetch="LAZY">
+      <join-columns>
+        <join-column name="log_in_data_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

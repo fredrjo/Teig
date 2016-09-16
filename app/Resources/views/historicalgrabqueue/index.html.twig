@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Historicalgrabqueue list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fromdate</th>
+                <th>Done</th>
+                <th>Note</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for historicalgrabqueue in historicalgrabqueues %}
+            <tr>
+                <td><a href="{{ path('historicalgrabqueue_show', { 'id': historicalgrabqueue.id }) }}">{{ historicalgrabqueue.fromDate }}</a></td>
+                <td>{% if historicalgrabqueue.done %}Yes{% else %}No{% endif %}</td>
+                <td>{{ historicalgrabqueue.note }}</td>
+                <td>{{ historicalgrabqueue.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('historicalgrabqueue_show', { 'id': historicalgrabqueue.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('historicalgrabqueue_edit', { 'id': historicalgrabqueue.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('historicalgrabqueue_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Alarm</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Subject</th>
+                <td>{{ alarm.subject }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ alarm.message }}</td>
+            </tr>
+            <tr>
+                <th>Sent</th>
+                <td>{% if entity.sent %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Senttime</th>
+                <td>{% if alarm.sentTime %}{{ alarm.sentTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ alarm.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alarm_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('alarm_edit', { 'id': alarm.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

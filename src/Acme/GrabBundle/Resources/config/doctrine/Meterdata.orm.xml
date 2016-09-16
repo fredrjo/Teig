@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\GrabBundle\Entity\Meterdata" table="meterdata">
+    <indexes>
+      <index name="meterdata_meter_id" columns="meter_id"/>
+    </indexes>
+    <id name="metertime" type="datetime" column="metertime"/>
+    <id name="meter" association-key="true"/>
+    <field name="metervalue" type="decimal" column="metervalue" precision="16" scale="5" nullable="false"/>
+    <field name="exported" type="boolean" column="exported" nullable="false"/>
+    <one-to-one field="meter" target-entity="Meter" fetch="LAZY">
+      <join-columns>
+        <join-column name="meter_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

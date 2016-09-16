@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grabsequence list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Grabtime</th>
+                <th>Periodfrom</th>
+                <th>Periodto</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grabsequence in grabsequences %}
+            <tr>
+                <td><a href="{{ path('grabsequence_show', { 'id': grabsequence.id }) }}">{{ grabsequence.grabtime|date('Y-m-d H:i:s') }}</a></td>
+                <td>{% if grabsequence.periodFrom %}{{ grabsequence.periodFrom|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if grabsequence.periodTo %}{{ grabsequence.periodTo|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ grabsequence.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('grabsequence_show', { 'id': grabsequence.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('grabsequence_edit', { 'id': grabsequence.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('grabsequence_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

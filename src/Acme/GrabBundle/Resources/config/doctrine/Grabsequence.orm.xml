@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\GrabBundle\Entity\Grabsequence" table="grabsequence">
+    <indexes>
+      <index name="grabsequence_grabber_id" columns="grabber_id"/>
+      <index name="grabsequence_meter_id" columns="meter_id"/>
+      <index name="grabsequence_status_id" columns="status_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="grabtime" type="datetime" column="grabtime" nullable="false"/>
+    <field name="periodFrom" type="datetime" column="period_from" nullable="false"/>
+    <field name="periodTo" type="datetime" column="period_to" nullable="false"/>
+    <many-to-one field="status" target-entity="Status" fetch="LAZY">
+      <join-columns>
+        <join-column name="status_id" referenced-column-name="status_code"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="meter" target-entity="Meter" fetch="LAZY">
+      <join-columns>
+        <join-column name="meter_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="grabber" target-entity="Grabber" fetch="LAZY">
+      <join-columns>
+        <join-column name="grabber_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

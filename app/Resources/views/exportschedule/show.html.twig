@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Exportschedule</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Weekday</th>
+                <td>{{ exportschedule.weekday }}</td>
+            </tr>
+            <tr>
+                <th>Hour</th>
+                <td>{{ exportschedule.hour }}</td>
+            </tr>
+            <tr>
+                <th>Disabled</th>
+                <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ exportschedule.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exportschedule_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,77 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Grabsequence
+ *
+ * @ORM\Table(name="grabsequence", indexes={@ORM\Index(name="grabsequence_grabber_id", columns={"grabber_id"}), @ORM\Index(name="grabsequence_meter_id", columns={"meter_id"}), @ORM\Index(name="grabsequence_status_id", columns={"status_id"})})
+ * @ORM\Entity
+ */
+class Grabsequence
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="grabtime", type="datetime", nullable=false)
+     */
+    private $grabtime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="period_from", type="datetime", nullable=false)
+     */
+    private $periodFrom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="period_to", type="datetime", nullable=false)
+     */
+    private $periodTo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Status
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Status")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="status_id", referencedColumnName="status_code")
+     * })
+     */
+    private $status;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Meter
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Meter")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="meter_id", referencedColumnName="id")
+     * })
+     */
+    private $meter;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Grabber
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Grabber")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="grabber_id", referencedColumnName="id")
+     * })
+     */
+    private $grabber;
+
+
+}
+

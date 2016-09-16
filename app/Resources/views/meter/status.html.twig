@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Last action of enabled meters</h1>
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-1">Meter identifier</th>
+                <th class="col-md-1">Last data recieved</th>
+                <th class="col-md-1">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meter in meters|sort %}
+        {% if not meter.disabled %}
+            <tr {% if lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 7 day"|date('Y-m-d') %}class="warning"{% endif %}>
+                <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
+                <td>{% if lastAction[meter.id] is defined %}{{ lastAction[meter.id]|date("d-m Y") }}{% else %}No data available{% endif %}</td>
+                <td>
+                  <div class="btn-group btn-group-justified" role="group" aria-label="Actions">
+                    <ul class="list-inline">
+                      <li>
+                          <a href="{{ path('chart_meterdata') }}?meterId={{meter.id}}" class="btn btn-info" role="button">Graph</a>
+                      </li>
+                        <li>
+                            <a href="{{ path('meter_show', { 'id': meter.id }) }}" class="btn btn-info" role="button">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('meter_edit', { 'id': meter.id }) }}" class="btn btn-info" role="button">edit</a>
+                        </li>
+                    </ul>
+                  </div>
+                </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('meter_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

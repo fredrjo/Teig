@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Alarm list</h1>
+<div class="container">
+    <table class"table table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-1">Alarm sent</th>
+                <th class="col-md-3">Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alarm in alarms %}
+            <tr>
+                <td>{% if alarm.sentTime %}{{ alarm.sentTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>>{{ alarm.subject }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alarm_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+  </div>
+{% endblock %}

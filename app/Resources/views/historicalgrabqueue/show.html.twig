@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Historicalgrabqueue</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Fromdate</th>
+                <td>{% if historicalgrabqueue.fromDate %}{{ historicalgrabqueue.fromDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Done</th>
+                <td>{% if historicalgrabqueue.done %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ historicalgrabqueue.note }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ historicalgrabqueue.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('historicalgrabqueue_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('historicalgrabqueue_edit', { 'id': historicalgrabqueue.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

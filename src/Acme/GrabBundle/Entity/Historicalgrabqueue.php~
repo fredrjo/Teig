@@ -1,0 +1,57 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Historicalgrabqueue
+ *
+ * @ORM\Table(name="historicalgrabqueue", indexes={@ORM\Index(name="historicalgrabqueue_meter_id", columns={"meter_id"})})
+ * @ORM\Entity
+ */
+class Historicalgrabqueue
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="from_date", type="datetime", nullable=false)
+     */
+    private $fromDate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="done", type="boolean", nullable=false)
+     */
+    private $done;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="text", nullable=false)
+     */
+    private $note;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Meter
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Meter")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="meter_id", referencedColumnName="id")
+     * })
+     */
+    private $meter;
+
+
+}
+

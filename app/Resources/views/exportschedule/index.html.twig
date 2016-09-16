@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Exportschedule list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Weekday</th>
+                <th>Hour</th>
+                <th>Disabled</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for exportschedule in exportschedules %}
+            <tr>
+                <td><a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">{{ exportschedule.weekday }}</a></td>
+                <td>{{ exportschedule.hour }}</td>
+                <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
+                <td>{{ exportschedule.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exportschedule_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

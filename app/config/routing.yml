@@ -1,0 +1,55 @@
+acme_grab_user:
+    resource: "@AcmeGrabBundle/Controller/UserController.php"
+    type:     annotation
+
+acme_grab_status:
+    resource: "@AcmeGrabBundle/Controller/StatusController.php"
+    type:     annotation
+
+acme_grab_meter:
+    resource: "@AcmeGrabBundle/Controller/MeterController.php"
+    type:     annotation
+
+acme_grab_logindata:
+    resource: "@AcmeGrabBundle/Controller/LogindataController.php"
+    type:     annotation
+
+acme_grab_importmail:
+    resource: "@AcmeGrabBundle/Controller/ImportmailController.php"
+    type:     annotation
+
+acme_grab_historicalgrabqueue:
+    resource: "@AcmeGrabBundle/Controller/HistoricalgrabqueueController.php"
+    type:     annotation
+
+acme_grab_grabsequence:
+    resource: "@AcmeGrabBundle/Controller/GrabsequenceController.php"
+    type:     annotation
+
+acme_grab_grabdata:
+    resource: "@AcmeGrabBundle/Controller/GrabdataController.php"
+    type:     annotation
+
+acme_grab_grabber:
+    resource: "@AcmeGrabBundle/Controller/GrabberController.php"
+    type:     annotation
+
+acme_grab_exportschedule:
+    resource: "@AcmeGrabBundle/Controller/ExportscheduleController.php"
+    type:     annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+acme_grab_alarm:
+    resource: "@AcmeGrabBundle/Controller/AlarmController.php"
+    type:     annotation
+
+grab:
+    resource: "@AcmeGrabBundle/Controller/"
+    type:     annotation
+
+acme_grab_chart:
+    resource: "@AcmeGrabBundle/Controller/ChartController.php"
+    type:     annotation

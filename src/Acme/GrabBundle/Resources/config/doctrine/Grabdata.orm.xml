@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\GrabBundle\Entity\Grabdata" table="grabdata">
+    <indexes>
+      <index name="grabdata_grab_sequence_id" columns="grab_sequence_id"/>
+      <index name="grabdata_meter_id" columns="meter_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="metertime" type="datetime" column="metertime" nullable="false"/>
+    <field name="metervalue" type="decimal" column="metervalue" precision="10" scale="5" nullable="false"/>
+    <many-to-one field="meter" target-entity="Meter" fetch="LAZY">
+      <join-columns>
+        <join-column name="meter_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="grabSequence" target-entity="Grabsequence" fetch="LAZY">
+      <join-columns>
+        <join-column name="grab_sequence_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

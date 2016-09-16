@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Logindata</h1>
+<div class="container">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <td>{{ logindatum.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ logindatum.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('logindata_edit', { 'id': logindatum.id }) }}" class="btn btn-info" role="button">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger" role="button">
+            {{ form_end(delete_form) }}
+        </li>
+        <li>
+            <a href="{{ path('logindata_index') }}">Back to the list</a>
+        </li>
+    </ul>
+  </div>
+{% endblock %}

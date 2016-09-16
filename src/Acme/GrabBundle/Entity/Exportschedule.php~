@@ -1,0 +1,81 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Exportschedule
+ *
+ * @ORM\Table(name="exportschedule", indexes={@ORM\Index(name="exportschedule_grabber_id", columns={"grabber_id"}), @ORM\Index(name="exportschedule_importmail_id", columns={"importmail_id"})})
+ * @ORM\Entity
+ */
+class Exportschedule
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="weekday", type="integer", nullable=false)
+     */
+    private $weekday;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hour", type="integer", nullable=false)
+     */
+    private $hour;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     */
+    private $disabled;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Grabber
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Grabber")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="grabber_id", referencedColumnName="id")
+     * })
+     */
+    private $grabber;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Importmail
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Importmail")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="importmail_id", referencedColumnName="id")
+     * })
+     */
+    private $importmail;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Acme\GrabBundle\Entity\Contact", mappedBy="exportschedule")
+     */
+    private $contact;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contact = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

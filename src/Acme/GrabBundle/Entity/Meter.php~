@@ -1,0 +1,84 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Meter
+ *
+ * @ORM\Table(name="meter", uniqueConstraints={@ORM\UniqueConstraint(name="meter_import_id_log_in_data_id", columns={"import_id", "log_in_data_id"})}, indexes={@ORM\Index(name="meter_log_in_data_id", columns={"log_in_data_id"}), @ORM\Index(name="meter_exportSchedule_id", columns={"exportSchedule_id"}), @ORM\Index(name="meter_status_id", columns={"status_id"})})
+ * @ORM\Entity
+ */
+class Meter
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="import_id", type="string", length=255, nullable=false)
+     */
+    private $importId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meterIdentifier", type="string", length=255, nullable=true)
+     */
+    private $meteridentifier;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extraIdentifiers", type="string", length=255, nullable=true)
+     */
+    private $extraidentifiers;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     */
+    private $disabled;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Status
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Status")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="status_id", referencedColumnName="status_code")
+     * })
+     */
+    private $status;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Exportschedule
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Exportschedule")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="exportSchedule_id", referencedColumnName="id")
+     * })
+     */
+    private $exportschedule;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Logindata
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\GrabBundle\Entity\Logindata")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="log_in_data_id", referencedColumnName="id")
+     * })
+     */
+    private $logInData;
+
+
+}
+

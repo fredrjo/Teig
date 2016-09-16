@@ -1,0 +1,52 @@
+<?php
+
+namespace Acme\GrabBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Meterdata
+ *
+ * @ORM\Table(name="meterdata", indexes={@ORM\Index(name="meterdata_meter_id", columns={"meter_id"})})
+ * @ORM\Entity
+ */
+class Meterdata
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metervalue", type="decimal", precision=16, scale=5, nullable=false)
+     */
+    private $metervalue;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="exported", type="boolean", nullable=false)
+     */
+    private $exported;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="metertime", type="datetime")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $metertime;
+
+    /**
+     * @var \Acme\GrabBundle\Entity\Meter
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Acme\GrabBundle\Entity\Meter")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="meter_id", referencedColumnName="id")
+     * })
+     */
+    private $meter;
+
+
+}
+
