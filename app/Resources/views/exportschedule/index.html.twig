@@ -8,7 +8,6 @@
             <tr>
                 <th>Weekday</th>
                 <th>Hour</th>
-                <th>Disabled</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,7 +16,6 @@
             <tr>
                 <td><a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">{{ exportschedule.weekday }}</a></td>
                 <td>{{ exportschedule.hour }}</td>
-                <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul class="inline">
                         <li>
