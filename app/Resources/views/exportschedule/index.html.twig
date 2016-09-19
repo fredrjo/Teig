@@ -21,12 +21,12 @@
                 <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
                 <td>{{ exportschedule.id }}</td>
                 <td>
-                    <ul>
+                    <ul class="inline">
                         <li>
-                            <a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">show</a>
+                            <a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}" class="btn btn-info" role="button">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id }) }}">edit</a>
+                            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id }) }}" class="btn btn-info" role="button">edit</a>
                         </li>
                     </ul>
                 </td>
