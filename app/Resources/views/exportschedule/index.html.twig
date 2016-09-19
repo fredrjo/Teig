@@ -2,8 +2,8 @@
 
 {% block body %}
     <h1>Exportschedule list</h1>
-
-    <table>
+    <div class="container">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Weekday</th>
@@ -40,4 +40,5 @@
             <a href="{{ path('exportschedule_new') }}">Create a new entry</a>
         </li>
     </ul>
+    </div>
 {% endblock %}
