@@ -2,7 +2,8 @@
 
 {% block body %}
     <h1>Exportschedule list</h1>
-<div class="container">
+
+    <div class="container">
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -19,6 +20,7 @@
                 <td><a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">{{exportschedule.grabber}}</a></td>
                 <td>{{ exportschedule.weekday }}</td>
                 <td>{{ exportschedule.hour }}</td>
+
                 <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul class="list-inline">
