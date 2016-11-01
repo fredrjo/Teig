@@ -24,12 +24,32 @@ class GrabsequenceController extends Controller
      */
     public function indexAction()
     {
+        $grabbers=array();
+        $maxtime=array();
+        $status=array();
         $em = $this->getDoctrine()->getManager();
 
         $grabsequences = $em->getRepository('AcmeGrabBundle:Grabsequence')->findAll();
+        foreach($grabsequences as $grabsequence) {
+          if (!(in_array($grabsequence->getGrabber()->getName(),$grabbers))) {
+            $grabbers[]=$grabsequence->getGrabber()->getName();
+          }
+          if (in_array($grabsequence->getGrabber()->getName(),$grabbers)) {
+              foreach($grabbers as $grabber) {
+                if ($grabber==$grabsequence->getGrabber()) {
+                  $maxtime[$grabsequence->getGrabber()->getName()]=$grabsequence->getGrabtime();
+                  $status[$grabsequence->getGrabber()->getName()]=$grabsequence->getStatus();
+                }
+              }
+          }
+        }
+
 
         return $this->render('grabsequence/index.html.twig', array(
             'grabsequences' => $grabsequences,
+            'last' => $maxtime,
+            'grabbers' => $grabbers,
+            'status' => $status,
         ));
     }
 

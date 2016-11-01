@@ -1,43 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Grabsequence list</h1>
-
-    <table>
+    <h1>Last grabberactions</h1>
+    <div class="container">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>Grabtime</th>
-                <th>Periodfrom</th>
-                <th>Periodto</th>
-                <th>Id</th>
-                <th>Actions</th>
+                <th>Grabber</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-        {% for grabsequence in grabsequences %}
-            <tr>
-                <td><a href="{{ path('grabsequence_show', { 'id': grabsequence.id }) }}">{{ grabsequence.grabtime|date('Y-m-d H:i:s') }}</a></td>
-                <td>{% if grabsequence.periodFrom %}{{ grabsequence.periodFrom|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if grabsequence.periodTo %}{{ grabsequence.periodTo|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ grabsequence.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('grabsequence_show', { 'id': grabsequence.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('grabsequence_edit', { 'id': grabsequence.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+        {% for grabber in grabbers|sort('asc') %}
+            <tr {% if last[grabber] is defined and last[grabber]|date('Y-m-d') < "now - 7 day"|date('Y-m-d') %}class="warning"{% endif %}>
+                <td>{{ last[grabber]|date('Y-m-d H:i:s') }}</td>
+                <td>{{grabber}}
+                <td>{{ status[grabber] }}</td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('grabsequence_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+  </div>
 {% endblock %}

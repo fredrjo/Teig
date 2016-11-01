@@ -6,6 +6,7 @@
             <tr>
                 <th>Importid</th>
                 <th>Meteridentifier</th>
+                <th>LastAction</th>
                 <th>Extraidentifiers</th>
                 <th>Disabled</th>
                 <th>Actions</th>
@@ -13,11 +14,13 @@
         </thead>
         <tbody>
         {% for meter in meters %}
-            <tr>
+            <tr {% if lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 7 day"|date('Y-m-d') %}class="warning"{% endif %}>
                 <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
                 <td>{{ meter.meteridentifier }}</td>
+                <td>{% if lastAction[meter.id] is defined %}{{ lastAction[meter.id]|date("d-m Y") }}{% else %}No data available{% endif %}</td>
                 <td>{{ meter.extraidentifiers }}</td>
                 <td>{% if meter.disabled %}Yes{% else %}No{% endif %}</td>
+
                 <td>
                   <div class="btn-group btn-group-justified" role="group" aria-label="Actions">
                     <ul class="list-inline">

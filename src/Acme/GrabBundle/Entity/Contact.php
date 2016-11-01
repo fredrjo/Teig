@@ -150,4 +150,7 @@ class Contact
     {
         return $this->exportschedule;
     }
+    public function __toString() {
+      return $this->name.": ".$this->mail;
+    }
 }

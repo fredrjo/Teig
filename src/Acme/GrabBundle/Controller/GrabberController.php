@@ -68,15 +68,25 @@ class GrabberController extends Controller
     public function showAction(Grabber $grabber)
     {
         $meters=array();
+        $lastAction=array();
         $em = $this->getDoctrine()->getManager();
         $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId()));
         foreach ($exportschdules as $exp) {
           $meters[]=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
         }
+        foreach ($meters as $meter) {
+          $conn = $this->container->get('database_connection');
+          $sql = "SELECT meter_id,max(metertime) as max FROM meterdata GROUP BY meter_id";
+          $rows=$conn->query($sql);
+        }
+        while ($result=$rows->fetch()) {
+          $lastAction[$result['meter_id']]=$result['max'];
+        }
         $deleteForm = $this->createDeleteForm($grabber);
         return $this->render('grabber/show.html.twig', array(
             'grabber' => $grabber,
             'metersArray' => $meters,
+            'lastAction' => $lastAction,
             'delete_form' => $deleteForm->createView(),
         ));
 
