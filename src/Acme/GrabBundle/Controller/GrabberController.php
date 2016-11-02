@@ -69,6 +69,7 @@ class GrabberController extends Controller
     {
         $meters=array();
         $lastAction=array();
+        $somedata=$this->getWebAdress($grabber->getName());
         $em = $this->getDoctrine()->getManager();
         $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId()));
         foreach ($exportschdules as $exp) {
@@ -89,6 +90,7 @@ class GrabberController extends Controller
             'metersArray' => $meters,
             'lastAction' => $lastAction,
             'delete_form' => $deleteForm->createView(),
+            'data' => $somedata,
         ));
 
     }
@@ -118,6 +120,21 @@ class GrabberController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+    private function getWebAdress($grabberName) {
+        $filename='/home/fredrik/development/TEIG/grab/grabbers/grabs.py';
+        $file=fopen($filename,"r");
+        $grabberclass="";
+        $data=explode('class',fread($file,filesize($filename)));
+        fclose($file);
+        foreach($data as $grabber) {
+            if (stripos($grabberName, $grabber) == 0) {
+                $grabberclass=explode('\'',$grabber);
+            };
+        }
+
+        return $grabberclass[1].$grabberclass[3];
+
     }
 
     /**
