@@ -74,6 +74,7 @@ class GrabberController extends Controller
         foreach ($exportschdules as $exp) {
           $meters[]=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
         }
+        $rows=array();
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');
           $sql = "SELECT meter_id,max(metertime) as max FROM meterdata GROUP BY meter_id";
