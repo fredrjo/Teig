@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th>Grabber</th>
+                <th>Importmail</th>
                 <th>Weekday</th>
                 <th>Hour</th>
                 <th>Disabled</th>
@@ -18,6 +19,7 @@
         {% for exportschedule in exportschedules|sort %}
             <tr>
                 <td><a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">{{exportschedule.grabber}}</a></td>
+                <td>{{exportschedule.importmail}}</td>
                 <td>{{ exportschedule.weekday }}</td>
                 <td>{{ exportschedule.hour }}</td>
 
