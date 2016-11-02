@@ -122,13 +122,13 @@ class GrabberController extends Controller
         ));
     }
     private function getWebAdress($grabberName) {
-        $filename='/home/fredrik/development/TEIG/grab/grabbers/grabs.py';
+        $filename='/home/fredrik/TEIG/grab/grabbers/grabs.py';
         $file=fopen($filename,"r");
         $grabberclass="";
         $data=explode('class',fread($file,filesize($filename)));
         fclose($file);
         foreach($data as $grabber) {
-            if (stripos($grabberName, $grabber) == 0) {
+            if (stripos($grabber, $grabberName) !== false) {
                 $grabberclass=explode('\'',$grabber);
             };
         }
