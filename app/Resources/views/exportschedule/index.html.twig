@@ -19,7 +19,6 @@
         {% for exportschedule in exportschedules|sort %}
             <tr>
                 <td><a href="{{ path('grabber_show', { 'id': exportschedule.grabber.id }) }}">{{exportschedule.grabber}}</a></td>
-                <td><a href="{{ path('exportschedule_show', { 'id': exportschedule.id }) }}">{{exportschedule.grabber}}</a></td>
                 <td>{{exportschedule.importmail}}</td>
                 <td>{{ exportschedule.weekday }}</td>
                 <td>{{ exportschedule.hour }}</td>

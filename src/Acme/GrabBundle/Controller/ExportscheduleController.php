@@ -92,7 +92,7 @@ class ExportscheduleController extends Controller
             $em->persist($exportschedule);
             $em->flush();
 
-            return $this->redirectToRoute('exportschedule_edit', array('id' => $exportschedule->getId()));
+            return $this->redirectToRoute('exportschedule_show', array('id' => $exportschedule->getId()));
         }
 
         return $this->render('exportschedule/edit.html.twig', array(

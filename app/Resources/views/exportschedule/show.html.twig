@@ -2,9 +2,13 @@
 
 {% block body %}
     <h1>Exportschedule</h1>
-
-    <table>
+<div class="container">
+    <table class="table table-striped">
         <tbody>
+          <tr>
+              <th>Grabber</th>
+              <td>{{ exportschedule.Grabber }}</td>
+          </tr>
             <tr>
                 <th>Weekday</th>
                 <td>{{ exportschedule.weekday }}</td>
@@ -18,23 +22,26 @@
                 <td>{% if exportschedule.disabled %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ exportschedule.id }}</td>
+                <th>Importmail</th>
+                <td>{{ exportschedule.importmail }}</td>
             </tr>
+
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
+
         <li>
-            <a href="{{ path('exportschedule_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id }) }}">Edit</a>
+            <a href="{{ path('exportschedule_edit', { 'id': exportschedule.id })}}" class="btn btn-info" role="button">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        <li>
+            <a href="{{ path('exportschedule_index') }}">Back to the list</a>
+        </li>
     </ul>
+  </div>
 {% endblock %}
