@@ -46,7 +46,6 @@ class GrabsequenceController extends Controller
 
 
         return $this->render('grabsequence/index.html.twig', array(
-            'grabsequences' => $grabsequences,
             'last' => $maxtime,
             'grabbers' => $grabbers,
             'status' => $status,
