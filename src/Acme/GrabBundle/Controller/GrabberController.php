@@ -69,11 +69,13 @@ class GrabberController extends Controller
     {
         $meters=array();
         $lastAction=array();
+        $somedata=$this->getWebAdress($grabber->getName());
         $em = $this->getDoctrine()->getManager();
         $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId()));
         foreach ($exportschdules as $exp) {
           $meters[]=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
         }
+        $rows=array();
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');
           $sql = "SELECT meter_id,max(metertime) as max FROM meterdata GROUP BY meter_id";
@@ -88,6 +90,7 @@ class GrabberController extends Controller
             'metersArray' => $meters,
             'lastAction' => $lastAction,
             'delete_form' => $deleteForm->createView(),
+            'data' => $somedata,
         ));
 
     }
@@ -117,6 +120,21 @@ class GrabberController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+    private function getWebAdress($grabberName) {
+        $filename='/home/fredrik/TEIG/grab/grabbers/grabs.py';
+        $file=fopen($filename,"r");
+        $grabberclass="";
+        $data=explode('class',fread($file,filesize($filename)));
+        fclose($file);
+        foreach($data as $grabber) {
+            if (stripos($grabber, $grabberName) !== false) {
+                $grabberclass=explode('\'',$grabber);
+            };
+        }
+
+        return $grabberclass[1].$grabberclass[3];
+
     }
 
     /**
