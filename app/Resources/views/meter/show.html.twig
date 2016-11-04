@@ -26,6 +26,10 @@
                 <th>Login data</th>
                 <td>{{ meter.logindata }}</td>
             </tr>
+            <tr>
+                <th>Grabber</th>
+                <td><a href="{{ path('grabber_show', { 'id': meter.logindata.grabber.id }) }}">{{ meter.logindata.grabber }}</a></td>
+            </tr>
         </tbody>
     </table>
 
