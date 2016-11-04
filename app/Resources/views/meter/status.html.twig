@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         {% for meter in meters|sort %}
-        {% if not meter.disabled and lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 5 day"|date('Y-m-d')%}
+        {% if not meter.disabled and lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 8 day"|date('Y-m-d')%}
             <tr {% if lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now -  30 day"|date('Y-m-d') %}class="warning"{% endif %}>
                 <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
                 <td><a href="{{ path('grabber_show', { 'id': meter.logindata.grabber.id }) }}">{{meter.logindata.grabber}}</td>
