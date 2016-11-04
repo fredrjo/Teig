@@ -6,9 +6,10 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th class="col-md-1">Meter identifier</th>
-                <th class="col-md-1">Last data recieved</th>
-                <th class="col-md-1">Actions</th>
+                <th class="col-sm-1">Meter identifier</th>
+                <th>Grabber</th>
+                <th class="col-sm-2">Last data recieved</th>
+                <th class="col-sm-4">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
         {% if not meter.disabled and lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 5 day"|date('Y-m-d')%}
             <tr {% if lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now -  30 day"|date('Y-m-d') %}class="warning"{% endif %}>
                 <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
+                <td><a href="{{ path('grabber_show', { 'id': meter.logindata.grabber.id }) }}">{{meter.logindata.grabber}}</td>
                 <td>{% if lastAction[meter.id] is defined %}{{ lastAction[meter.id]|date("d-m Y") }}{% else %}No data available{% endif %}</td>
                 <td>
                   <div class="btn-group btn-group-justified" role="group" aria-label="Actions">
@@ -28,6 +30,9 @@
                         </li>
                         <li>
                             <a href="{{ path('meter_edit', { 'id': meter.id }) }}" class="btn btn-info" role="button">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('meter_edit', { 'id': meter.id }) }}"class="btn btn-danger" role="button">Grab</a>
                         </li>
                     </ul>
                   </div>
