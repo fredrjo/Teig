@@ -53,3 +53,7 @@ grab:
 acme_grab_chart:
     resource: "@AcmeGrabBundle/Controller/ChartController.php"
     type:     annotation
+
+acme_grab_search:
+    resource: "@AcmeGrabBundle/Controller/SearchController.php"
+    type:     annotation
