@@ -163,4 +163,24 @@ class MeterController extends Controller
             ->getForm()
         ;
     }
+    /**
+     * Grabs data from an existing Meter entity.
+     *
+     * @Route("/{id}/grab", name="meter_grab")
+     * @Method({"GET", "POST"})
+     */
+    public function grabAction(Request $request, Meter $meter)
+    {
+      $result=$this->execInBackground('python c:/wamp/spesific_grab.py aga 2366576');
+
+        return $this->redirectToRoute('meter_index');
+    }
+    private function execInBackground($cmd) {
+    if (substr(php_uname(), 0, 7) == "Windows"){
+        pclose(popen("start /B ". $cmd, "r"));
+    }
+    else {
+        exec($cmd . " > /dev/null &");
+    }
+}
 }

@@ -75,7 +75,11 @@ class GrabberController extends Controller
         foreach ($exportschdules as $exp) {
           $meters[]=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
         }
+
         $rows=array();
+        if (count($meters)==0) {
+          return $this->redirectToRoute('grabber_index');
+        }
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');
           $sql = "SELECT meter_id,max(metertime) as max FROM meterdata GROUP BY meter_id";
@@ -172,5 +176,25 @@ class GrabberController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    /**
+     * Grabs data from an existing Grabber entity.
+     *
+     * @Route("/{id}/grab", name="grabber_grab")
+     * @Method({"GET", "POST"})
+     */
+    public function grabAction(Request $request, Grabber $grabber)
+    {
+      $result=$this->execInBackground('python c:/wamp/spesific_grab.py aga 2366576');
+
+        return $this->redirectToRoute('grabber_index');
+    }
+    private function execInBackground($cmd) {
+      if (substr(php_uname(), 0, 7) == "Windows"){
+        pclose(popen("start /B ". $cmd, "r"));
+      }
+      else {
+        exec($cmd . " > /dev/null &");
+      }
     }
 }
