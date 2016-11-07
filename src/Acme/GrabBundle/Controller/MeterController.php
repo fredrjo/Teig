@@ -171,9 +171,17 @@ class MeterController extends Controller
      */
     public function grabAction(Request $request, Meter $meter)
     {
-      $result=$this->execInBackground('python c:/wamp/spesific_grab.py aga 2366576');
+        $grabberId=$meter->getLogInData()->getGrabber()->getId();
+        $meterId=$meter->getId();
+        $dateOneMonthAgo = date("d-m-Y", strtotime( date( "d-m-Y", strtotime( date("d-m-Y") ) ) . "-1 month" ) );
 
-        return $this->redirectToRoute('meter_index');
+        $cmd='python3  ~fredrik/development/TEIG/spesific_grab.py '.$grabberId.' '.$dateOneMonthAgo. ' '.$meterId;
+
+
+      //$mydate="python3 ~fredrik/development/TEIG/spesific_grab.py 356 '03.11.2016' 363";
+        $this->execInBackground($cmd);
+
+        return $this->redirectToRoute('meter_status');
     }
     private function execInBackground($cmd) {
     if (substr(php_uname(), 0, 7) == "Windows"){
