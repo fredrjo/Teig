@@ -185,7 +185,12 @@ class GrabberController extends Controller
      */
     public function grabAction(Request $request, Grabber $grabber)
     {
-      $result=$this->execInBackground('python c:/wamp/spesific_grab.py aga 2366576');
+        $grabberId=$grabber->getId();
+        $dateOneMonthAgo = date("d.m.Y", strtotime( date( "d.m.Y", strtotime( date("d.m.Y") ) ) . "-1 month" ) );
+
+        $cmd='python3  ~fredrik/development/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' \'42\'';
+      //$mydate="python3 ~fredrik/development/TEIG/spesific_grab.py 356 '03.11.2016' 363";
+        $this->execInBackground($cmd);
 
         return $this->redirectToRoute('grabber_index');
     }
