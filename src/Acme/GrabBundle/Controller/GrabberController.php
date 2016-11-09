@@ -126,7 +126,7 @@ class GrabberController extends Controller
         ));
     }
     private function getWebAdress($grabberName) {
-      return "example.com"; // remove at work
+      //return "example.com"; // remove at work
         $filename='/home/fredrik/TEIG/grab/grabbers/grabs.py';
         $file=fopen($filename,"r");
         $grabberclass="";
@@ -188,7 +188,7 @@ class GrabberController extends Controller
         $grabberId=$grabber->getId();
         $dateOneMonthAgo = date("d.m.Y", strtotime( date( "d.m.Y", strtotime( date("d.m.Y") ) ) . "-1 month" ) );
 
-        $cmd='python3  ~fredrik/development/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' \'42\'';
+        $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' \'42\'';
       //$mydate="python3 ~fredrik/development/TEIG/spesific_grab.py 356 '03.11.2016' 363";
         $this->execInBackground($cmd);
 

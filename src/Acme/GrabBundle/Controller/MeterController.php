@@ -175,9 +175,9 @@ class MeterController extends Controller
         $meterId=$meter->getId();
         $dateOneMonthAgo = date("d.m.Y", strtotime( date( "d.m.Y", strtotime( date("d.m.Y") ) ) . "-1 month" ) );
 
-        $cmd='python3  ~fredrik/development/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' '.$meterId;
-        
-      //$mydate="python3 ~fredrik/development/TEIG/spesific_grab.py 356 '03.11.2016' 363";
+        $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' '.$meterId;
+
+      	echo $cmd;die;
         $this->execInBackground($cmd);
 
         return $this->redirectToRoute('meter_status');
