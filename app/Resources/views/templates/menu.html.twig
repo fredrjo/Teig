@@ -9,12 +9,12 @@
     <li><a href="{{ path('meter_status') }}">Meter status</a></li>
     <li role="separator" class="divider"></li>
     <li><a href="{{ path('grabber_index') }}">Grabbers</a></li>
-    <li><a href="{{ path('grabsequence_index') }}">Last grabbberaction</a></li>
+    <li><a href="{{ path('grabsequence_index') }}">Last grabberaction</a></li>
   </ul>
 </div>
   <div style="float:left">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Import <span class="caret"></span>
+    Actions <span class="caret"></span>
   </button>
   <ul class="dropdown-menu"">
     <li><a href="{{ path('exportschedule_index') }}">Exportschedule</a></li>
@@ -22,12 +22,14 @@
     <li role="separator" class="divider"></li>
     <li><a href="{{ path('importmail_index') }}">Importmail</a></li>
     <li><a href="{{ path('contact_index') }}">Contact</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="{{ path('meter_new') }}">Add meter</a></li>
   </ul>
   </div>
 
   <div class="col-lg-5 pull-right">
 
-    <form class="form-inline" method="post" action="/search_show">
+    <form class="form-inline form-row" method="post" action="/search_show">
       <div class="input-group">
       <input id="search" name="search" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">

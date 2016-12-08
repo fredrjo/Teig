@@ -46,11 +46,11 @@ class MeterController extends Controller
         $meters = $em->getRepository('AcmeGrabBundle:Meter')->findAll();
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');
-          $sql = "SELECT meter_id,max(metertime) as max FROM meterdata GROUP BY meter_id";
+          $sql = "SELECT meter_id,max(metertime) as max, count(metertime) as count FROM meterdata GROUP BY meter_id";
           $rows=$conn->query($sql);
         }
         while ($result=$rows->fetch()) {
-          $lastAction[$result['meter_id']]=$result['max'];
+          $lastAction[$result['meter_id']]=array($result['max'], $result['count']) ;
         }
 
         return $this->render('meter/status.html.twig', array(
@@ -118,7 +118,7 @@ class MeterController extends Controller
             $em->persist($meter);
             $em->flush();
 
-            return $this->redirectToRoute('meter_edit', array('id' => $meter->getId()));
+            return $this->redirectToRoute('meter_show', array('id' => $meter->getId()));
         }
 
         return $this->render('meter/edit.html.twig', array(
@@ -180,7 +180,7 @@ class MeterController extends Controller
       	echo $cmd;die;
         $this->execInBackground($cmd);
 
-        return $this->redirectToRoute('meter_status');
+        return $this->redirectToRoute('meter_show', array('id' => $meter->getId()));
     }
     private function execInBackground($cmd) {
     if (substr(php_uname(), 0, 7) == "Windows"){

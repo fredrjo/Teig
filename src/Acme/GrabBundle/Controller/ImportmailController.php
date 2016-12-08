@@ -92,7 +92,7 @@ class ImportmailController extends Controller
             $em->persist($importmail);
             $em->flush();
 
-            return $this->redirectToRoute('importmail_edit', array('id' => $importmail->getId()));
+            return $this->redirectToRoute('importmail_show', array('id' => $importmail->getId()));
         }
 
         return $this->render('importmail/edit.html.twig', array(

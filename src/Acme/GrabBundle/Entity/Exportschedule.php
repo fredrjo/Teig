@@ -242,6 +242,6 @@ class Exportschedule
         return $this->contact;
     }
     public function __toString() {
-      return $this->grabber.' '.$this->weekday;
+      return $this->grabber.' '.$this->importmail;
     }
 }

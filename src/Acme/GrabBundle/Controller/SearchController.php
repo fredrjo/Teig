@@ -30,9 +30,13 @@ class SearchController extends Controller
       $importId=$_POST['search'];
       $em = $this->getDoctrine()->getManager();
       $meterId = $em->getRepository('AcmeGrabBundle:Meter')->findBy(array('importId'=>$importId));
+      if (isset($meterId[0])) {
+        return $this->redirectToRoute('meter_show', array('id' => $meterId[0]->getId()));
+      }
+      else {
+        return $this->redirect($request->server->get('HTTP_REFERER'));
+      }
 
-
-      return $this->redirectToRoute('meter_show', array('id' => $meterId[0]->getId()));
     }
 
 }

@@ -2,14 +2,13 @@
 
 {% block body %}
     <h1>Grabber edit</h1>
-
+    <div class="container">
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     <ul class="list-inline">
-
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
@@ -19,4 +18,5 @@
             <a href="{{ path('grabber_index') }}">Back to the list</a>
         </li>
     </ul>
+  </div>
 {% endblock %}

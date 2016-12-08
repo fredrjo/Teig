@@ -126,7 +126,7 @@ class GrabberController extends Controller
         ));
     }
     private function getWebAdress($grabberName) {
-      //return "example.com"; // remove at work
+      return "example.com"; // remove at work
         $filename='/home/fredrik/TEIG/grab/grabbers/grabs.py';
         $file=fopen($filename,"r");
         $grabberclass="";

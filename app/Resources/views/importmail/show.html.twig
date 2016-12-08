@@ -2,8 +2,8 @@
 
 {% block body %}
     <h1>Importmail</h1>
-
-    <table>
+    <div class="container">
+    <table class="table table-responsive"> 
         <tbody>
             <tr>
                 <th>Importmail</th>
@@ -16,17 +16,19 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
+
         <li>
-            <a href="{{ path('importmail_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('importmail_edit', { 'id': importmail.id }) }}">Edit</a>
+            <a href="{{ path('importmail_edit', { 'id': importmail.id }) }}" class="btn btn-info" role="button">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        <li>
+            <a href="{{ path('importmail_index') }}">Back to the list</a>
+        </li>
     </ul>
+  </div>
 {% endblock %}
