@@ -1,25 +1,25 @@
-<h1>Meters</h1>
-<p>{% if meters[0].logindata is defined %} {{ meters[0].logindata }} {% endif %}</p>
+<h3>- <em>{% if meters[0].exportschedule is defined %} {{ meters[0].exportschedule.importmail }} {% endif %}</em>
+<a href="{{ path('exportschedule_grab', { 'id': meters[0].exportschedule.id }) }}"class="btn btn-danger" role="button">Grab</a>
+</h3>
+
+
 <div class="container">
     <table class="table table-responsive">
         <thead>
             <tr>
                 <th>Importid</th>
-                <th>Meteridentifier</th>
-                <th>LastAction</th>
-                <th>Extraidentifiers</th>
-                <th>Disabled</th>
-                <th>Actions</th>
+                <th class="col-md-1">LastAction</th>
+                <th class="col-md-5">Logindata</th>
+                <th class="col-md-4">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for meter in meters %}
             <tr {% if lastAction[meter.id] is defined and lastAction[meter.id]|date('Y-m-d') < "now - 7 day"|date('Y-m-d') %}class="warning"{% endif %}>
                 <td><a href="{{ path('meter_show', { 'id': meter.id }) }}">{{ meter.importId }}</a></td>
-                <td>{{ meter.meteridentifier }}</td>
                 <td>{% if lastAction[meter.id] is defined %}{{ lastAction[meter.id]|date("d-m Y") }}{% else %}No data available{% endif %}</td>
-                <td>{{ meter.extraidentifiers }}</td>
-                <td>{% if meter.disabled %}Yes{% else %}No{% endif %}</td>
+                <td>{{ meter.logindata }}
+                <span class="badge">{% if meter.disabled %}Disabled{% else %}Ok{% endif %}</span></td>
 
                 <td>
                   <div class="btn-group btn-group-justified" role="group" aria-label="Actions">
