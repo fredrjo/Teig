@@ -73,8 +73,12 @@ class GrabberController extends Controller
         $em = $this->getDoctrine()->getManager();
         $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId()));
         foreach ($exportschdules as $exp) {
-          $meters[]=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
-        }
+          $newMeters=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
+	if (count($newMeters)>0) {
+       
+		$meters[]=$newMeters;
+	 }
+	}
 
         $rows=array();
         if (count($meters)==0) {
@@ -126,7 +130,7 @@ class GrabberController extends Controller
         ));
     }
     private function getWebAdress($grabberName) {
-      return "example.com"; // remove at work
+      #return "example.com"; // remove at work
         $filename='/home/fredrik/TEIG/grab/grabbers/grabs.py';
         $file=fopen($filename,"r");
         $grabberclass="";
