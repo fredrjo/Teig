@@ -46,11 +46,12 @@ class MeterController extends Controller
         $meters = $em->getRepository('AcmeGrabBundle:Meter')->findAll();
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');
-          $sql = "SELECT meter_id,max(metertime) as max, count(metertime) as count FROM meterdata GROUP BY meter_id";
+          $sql = "SELECT meter_id,max(metertime) as max, count(metertime) as count FROM meterdata WHERE meter_id=".$meter->getId();
           $rows=$conn->query($sql);
-        }
-        while ($result=$rows->fetch()) {
-          $lastAction[$result['meter_id']]=array($result['max'], $result['count']) ;
+
+          while ($result=$rows->fetch()) {
+              $lastAction[$result['meter_id']]=array($result['max'], $result['count']) ;
+          }
         }
 
         return $this->render('meter/status.html.twig', array(
