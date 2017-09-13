@@ -172,13 +172,13 @@ class MeterController extends Controller
      */
     public function grabAction(Request $request, Meter $meter)
     {
-        $grabberId=$meter->getLogInData()->getGrabber()->getId();
+        $grabberId=$meter->getExportschedule()->getId();
         $meterId=$meter->getId();
         $dateOneMonthAgo = date("d.m.Y", strtotime( date( "d.m.Y", strtotime( date("d.m.Y") ) ) . "-1 month" ) );
 
         $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' '.$meterId;
 
-      	echo $cmd;die;
+      	//echo $cmd;die;
         $this->execInBackground($cmd);
 
         return $this->redirectToRoute('meter_show', array('id' => $meter->getId()));

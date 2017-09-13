@@ -33,6 +33,13 @@ class SearchController extends Controller
       if (isset($meterId[0])) {
         return $this->redirectToRoute('meter_show', array('id' => $meterId[0]->getId()));
       }
+      if (!isset($meterId[0])) {
+          $meterId = $em->getRepository('AcmeGrabBundle:Meter')->findBy(array('meteridentifier'=>$importId));
+      }
+      if (isset($meterId[0])) {
+
+          return $this->redirectToRoute('meter_show', array('id' => $meterId[0]->getId()));
+      }
       else {
         return $this->redirect($request->server->get('HTTP_REFERER'));
       }
