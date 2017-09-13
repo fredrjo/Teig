@@ -38,7 +38,7 @@ class SearchController extends Controller
       }
       if (isset($meterId[0])) {
 
-          return $this->redirectToRoute('meter_show', array('id' => $meterId[0]->getId()));
+          return $this->redirectToRoute('meter_show', array('id' => $meterId[sizeof($meterId)-1]->getId()));
       }
       else {
         return $this->redirect($request->server->get('HTTP_REFERER'));
