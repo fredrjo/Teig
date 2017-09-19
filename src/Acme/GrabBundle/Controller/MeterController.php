@@ -26,7 +26,7 @@ class MeterController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $meters = $em->getRepository('AcmeGrabBundle:Meter')->findAll();
+        $meters = $em->getRepository('AcmeGrabBundle:Meter')->findByDisabled(0);
 
         return $this->render('meter/index.html.twig', array(
             'meters' => $meters,
@@ -42,7 +42,6 @@ class MeterController extends Controller
     {
         $lastAction=array();
         $em = $this->getDoctrine()->getManager();
-
         $meters = $em->getRepository('AcmeGrabBundle:Meter')->findAll();
         foreach ($meters as $meter) {
           $conn = $this->container->get('database_connection');

@@ -71,9 +71,9 @@ class GrabberController extends Controller
         $lastAction=array();
         $somedata=$this->getWebAdress($grabber->getName());
         $em = $this->getDoctrine()->getManager();
-        $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId()));
+        $exportschdules = $em->getRepository('AcmeGrabBundle:Exportschedule')->findBy(array("grabber"=>$grabber->getId(), "disabled"=>0));
         foreach ($exportschdules as $exp) {
-          $newMeters=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId()));
+          $newMeters=$em->getRepository('AcmeGrabBundle:Meter')->findBy(array('exportschedule'=>$exp->getId(), 'disabled' => 0));
 	if (count($newMeters)>0) {
        
 		$meters[]=$newMeters;
