@@ -26,6 +26,14 @@ class AlarmController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+	$myfile = fopen("/home/fredrik/Teig/src/Acme/GrabBundle/Controller/output.txt", "r") or die("Unable to open file!");
+	if (filesize("/home/fredrik/Teig/src/Acme/GrabBundle/Controller/output.txt")>0) {
+		$dump = fread($myfile,filesize("/home/fredrik/Teig/src/Acme/GrabBundle/Controller/output.txt"));
+
+	}
+	else { $dump = 'There is no message'; }
+	fclose($myfile);	
+	
         $repository = $em->getRepository('AcmeGrabBundle:Alarm');
         $query = $repository->createQueryBuilder('a')
           ->setMaxResults(50)
@@ -35,6 +43,7 @@ class AlarmController extends Controller
         $alarms = $query->getResult();
         return $this->render('alarm/index.html.twig', array(
             'alarms' => $alarms,
+		'dump' =>$dump,
         ));
     }
 

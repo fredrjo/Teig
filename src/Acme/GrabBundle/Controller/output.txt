@@ -1,0 +1,58 @@
+send: 'ehlo loke.cebyc.int\r\n'
+reply: b'250-loke.cebyc.int\r\n'
+reply: b'250-PIPELINING\r\n'
+reply: b'250-SIZE 10240000\r\n'
+reply: b'250-VRFY\r\n'
+reply: b'250-ETRN\r\n'
+reply: b'250-STARTTLS\r\n'
+reply: b'250-ENHANCEDSTATUSCODES\r\n'
+reply: b'250-8BITMIME\r\n'
+reply: b'250 DSN\r\n'
+reply: retcode (250); Msg: b'loke.cebyc.int\nPIPELINING\nSIZE 10240000\nVRFY\nETRN\nSTARTTLS\nENHANCEDSTATUSCODES\n8BITMIME\nDSN'
+send: 'mail FROM:<grabalarm@cebyc.no> size=510\r\n'
+reply: b'250 2.1.0 Ok\r\n'
+reply: retcode (250); Msg: b'2.1.0 Ok'
+send: 'rcpt TO:<fredrik.johnsen@cebyc.no>\r\n'
+reply: b'250 2.1.5 Ok\r\n'
+reply: retcode (250); Msg: b'2.1.5 Ok'
+send: 'data\r\n'
+reply: b'354 End data with <CR><LF>.<CR><LF>\r\n'
+reply: retcode (354); Msg: b'End data with <CR><LF>.<CR><LF>'
+data: (354, b'End data with <CR><LF>.<CR><LF>')
+send: b'Content-Type: multipart/mixed; boundary="===============1535221307648605746=="\r\nMIME-Version: 1.0\r\nSubject: No new data\r\nFrom: grabalarm@cebyc.no\r\nTo: fredrik.johnsen@cebyc.no\r\n\r\n--===============1535221307648605746==\r\nContent-Type: text/plain; charset="us-ascii"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: 7bit\r\nContent-Disposition: attachment; filename="teig"\r\n\r\nNo new data found when trying to export to "ringalm_grab@data.energinet.net" from local database!\r\n--===============1535221307648605746==--\r\n.\r\n'
+reply: b'250 2.0.0 Ok: queued as 3261DD808FC\r\n'
+reply: retcode (250); Msg: b'2.0.0 Ok: queued as 3261DD808FC'
+data: (250, b'2.0.0 Ok: queued as 3261DD808FC')
+send: 'quit\r\n'
+reply: b'221 2.0.0 Bye\r\n'
+reply: retcode (221); Msg: b'2.0.0 Bye'
+42
+User successfully logged in
+rememberd url: https://hafslundnett.no/
+User successfully logged in
+1. try loading 1st loop new file
+Pass
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response
+User successfully logged in
+1. try loading 1st loop new file
+Pass
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response
+User successfully logged in
+1. try loading 1st loop new file
+Pass
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response
+1. try loading 2nd loop
+Pass response

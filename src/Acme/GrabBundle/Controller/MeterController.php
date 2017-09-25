@@ -177,9 +177,7 @@ class MeterController extends Controller
 
         $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' '.$meterId;
 
-      	//echo $cmd;die;
-        $this->execInBackground($cmd);
-
+        $status =$this->execInBackground($cmd);
         return $this->redirectToRoute('meter_show', array('id' => $meter->getId()));
     }
     private function execInBackground($cmd) {
@@ -187,7 +185,7 @@ class MeterController extends Controller
         pclose(popen("start /B ". $cmd, "r"));
     }
     else {
-        exec($cmd . " > /dev/null &");
+        exec($cmd . " > /home/fredrik/Teig/src/Acme/GrabBundle/Controller/output.txt &");
     }
 }
 }

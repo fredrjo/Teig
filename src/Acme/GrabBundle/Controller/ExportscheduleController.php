@@ -148,7 +148,7 @@ class ExportscheduleController extends Controller
         $grabberId=$exportschedule->getId();
         $dateOneMonthAgo = date("d.m.Y", strtotime( date( "d.m.Y", strtotime( date("d.m.Y") ) ) . "-1 month" ) );
 
-        $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' \'42\'';
+        $cmd='xvfb-run --auto-servernum python3  ~fredrik/TEIG/spesific_grab.py '.$grabberId.' \''.$dateOneMonthAgo. '\' 42';
       //echo $cmd;die;
 	//$mydate="python3 ~fredrik/development/TEIG/spesific_grab.py 356 '03.11.2016' 363";
         $this->execInBackground($cmd);
@@ -160,7 +160,7 @@ class ExportscheduleController extends Controller
         pclose(popen("start /B ". $cmd, "r"));
       }
       else {
-        exec($cmd . " > /dev/null &");
+        exec($cmd . " > /home/fredrik/Teig/src/Acme/GrabBundle/Controller/output.txt &");
       }
     }
 }
