@@ -2,7 +2,13 @@
 
 {% block body %}
     <h1>Logindata list</h1>
-    <div class="container">
+ <ul>
+        <li>
+            <a href="{{ path('logindata_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+ 
+   <div class="container">
     <table class="table tabler-bordered">
         <thead>
             <tr>
@@ -31,10 +37,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('logindata_new') }}">Create a new entry</a>
-        </li>
-    </ul>
   </div>
+
 {% endblock %}

@@ -47,7 +47,6 @@ class MeterController extends Controller
           $conn = $this->container->get('database_connection');
           $sql = "SELECT meter_id,max(metertime) as max, count(metertime) as count FROM meterdata WHERE meter_id=".$meter->getId();
           $rows=$conn->query($sql);
-
           while ($result=$rows->fetch()) {
               $lastAction[$result['meter_id']]=array($result['max'], $result['count']) ;
           }
