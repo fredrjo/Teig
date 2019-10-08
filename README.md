@@ -15,6 +15,6 @@ Teig/src/Acme/GrabBundle/Controller/MeterController.php
 
 The overlay can be run on the inbuilt server with 
 
-php <Your directory path>/Teig/app/console server:run 0.0.0.0:8000
+php \<Your directory path\>/Teig/app/console server:run 0.0.0.0:8000
 
 
