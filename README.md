@@ -8,5 +8,7 @@ Teig/app/config/parameters.yml.dist.
 
 Also change path to outputfile in:
 
-Teig/src/Acme/GrabBundle/Controller/AlarmController.php 
+Teig/src/Acme/GrabBundle/Controller/AlarmController.php
+Teig/src/Acme/GrabBundle/Controller/ExportscheduleController.php 
+Teig/src/Acme/GrabBundle/Controller/GrabberController.php 
 
