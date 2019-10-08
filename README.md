@@ -6,3 +6,7 @@ It will automatically as for your database settings but might also be manually c
 
 Teig/app/config/parameters.yml.dist.
 
+Also change path to outputfile in:
+
+Teig/src/Acme/GrabBundle/Controller/AlarmController.php 
+
