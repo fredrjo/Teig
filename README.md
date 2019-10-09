@@ -1,5 +1,6 @@
 Teig (TEIG Environment Interface Glorifier)
 ===========================================
+(aka TNT (Teig Not TEIG))
 Install this program as an overlay to connect to the database after installing TEIG.
 
 Clone to a directory and install with composer (composer install).
