@@ -2,7 +2,7 @@ Teig (TEIG Environment Interface Glorifier)
 ===========================================
 Install this program as an overlay to connect to the database after installing TEIG.
 
-Clone to a directory and install with composer.
+Clone to a directory and install with composer (composer install).
 
 It will automatically ask for your database settings while installing, but can also be manually configured in 
 
